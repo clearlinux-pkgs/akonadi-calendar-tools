@@ -6,7 +6,7 @@
 #
 Name     : akonadi-calendar-tools
 Version  : 18.08.0
-Release  : 1
+Release  : 2
 URL      : https://download.kde.org/stable/applications/18.08.0/src/akonadi-calendar-tools-18.08.0.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.08.0/src/akonadi-calendar-tools-18.08.0.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.08.0/src/akonadi-calendar-tools-18.08.0.tar.xz.sig
@@ -90,7 +90,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535295515
+export SOURCE_DATE_EPOCH=1535423960
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -98,7 +98,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535295515
+export SOURCE_DATE_EPOCH=1535423960
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/akonadi-calendar-tools
 cp COPYING %{buildroot}/usr/share/doc/akonadi-calendar-tools/COPYING
@@ -128,6 +128,8 @@ popd
 /usr/share/icons/hicolor/22x22/apps/konsolekalendar.png
 /usr/share/icons/hicolor/32x32/apps/konsolekalendar.png
 /usr/share/icons/hicolor/48x48/apps/konsolekalendar.png
+/usr/share/xdg/console.categories
+/usr/share/xdg/console.renamecategories
 
 %files doc
 %defattr(0644,root,root,0755)
