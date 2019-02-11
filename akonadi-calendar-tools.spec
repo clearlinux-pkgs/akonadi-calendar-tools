@@ -5,22 +5,21 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : akonadi-calendar-tools
-Version  : 18.08.0
-Release  : 2
-URL      : https://download.kde.org/stable/applications/18.08.0/src/akonadi-calendar-tools-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/akonadi-calendar-tools-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/akonadi-calendar-tools-18.08.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 18.12.2
+Release  : 3
+URL      : https://download.kde.org/stable/applications/18.12.2/src/akonadi-calendar-tools-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/akonadi-calendar-tools-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/akonadi-calendar-tools-18.12.2.tar.xz.sig
+Summary  : CLI tools to manage akonadi calendars
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.1
-Requires: akonadi-calendar-tools-bin
-Requires: akonadi-calendar-tools-data
-Requires: akonadi-calendar-tools-license
-Requires: akonadi-calendar-tools-locales
+Requires: akonadi-calendar-tools-bin = %{version}-%{release}
+Requires: akonadi-calendar-tools-data = %{version}-%{release}
+Requires: akonadi-calendar-tools-license = %{version}-%{release}
+Requires: akonadi-calendar-tools-locales = %{version}-%{release}
 BuildRequires : akonadi-calendar-dev
 BuildRequires : akonadi-contacts-dev
 BuildRequires : akonadi-dev
-BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : calendarsupport-dev
@@ -31,7 +30,7 @@ BuildRequires : kidentitymanagement-dev
 BuildRequires : kmime-dev
 BuildRequires : kpimtextedit-dev
 BuildRequires : libkdepim-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 Here are some nice example scripts how to use konsolekalendar.
@@ -43,8 +42,8 @@ You need lynx and the Date::Calc to use this script
 %package bin
 Summary: bin components for the akonadi-calendar-tools package.
 Group: Binaries
-Requires: akonadi-calendar-tools-data
-Requires: akonadi-calendar-tools-license
+Requires: akonadi-calendar-tools-data = %{version}-%{release}
+Requires: akonadi-calendar-tools-license = %{version}-%{release}
 
 %description bin
 bin components for the akonadi-calendar-tools package.
@@ -83,29 +82,29 @@ locales components for the akonadi-calendar-tools package.
 
 
 %prep
-%setup -q -n akonadi-calendar-tools-18.08.0
+%setup -q -n akonadi-calendar-tools-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535423960
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549912928
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535423960
+export SOURCE_DATE_EPOCH=1549912928
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/akonadi-calendar-tools
-cp COPYING %{buildroot}/usr/share/doc/akonadi-calendar-tools/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/akonadi-calendar-tools/COPYING.DOC
-cp COPYING.LIB %{buildroot}/usr/share/doc/akonadi-calendar-tools/COPYING.LIB
-cp calendarjanitor/COPYING %{buildroot}/usr/share/doc/akonadi-calendar-tools/calendarjanitor_COPYING
-cp konsolekalendar/COPYING %{buildroot}/usr/share/doc/akonadi-calendar-tools/konsolekalendar_COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools
+cp COPYING %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/COPYING.DOC
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/COPYING.LIB
+cp calendarjanitor/COPYING %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/calendarjanitor_COPYING
+cp konsolekalendar/COPYING %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/konsolekalendar_COPYING
 pushd clr-build
 %make_install
 popd
@@ -159,12 +158,12 @@ popd
 /usr/share/doc/HTML/uk/konsolekalendar/index.docbook
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/akonadi-calendar-tools/COPYING
-/usr/share/doc/akonadi-calendar-tools/COPYING.DOC
-/usr/share/doc/akonadi-calendar-tools/COPYING.LIB
-/usr/share/doc/akonadi-calendar-tools/calendarjanitor_COPYING
-/usr/share/doc/akonadi-calendar-tools/konsolekalendar_COPYING
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/akonadi-calendar-tools/COPYING
+/usr/share/package-licenses/akonadi-calendar-tools/COPYING.DOC
+/usr/share/package-licenses/akonadi-calendar-tools/COPYING.LIB
+/usr/share/package-licenses/akonadi-calendar-tools/calendarjanitor_COPYING
+/usr/share/package-licenses/akonadi-calendar-tools/konsolekalendar_COPYING
 
 %files locales -f calendarjanitor.lang -f konsolekalendar.lang
 %defattr(-,root,root,-)
