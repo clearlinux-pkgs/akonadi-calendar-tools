@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : akonadi-calendar-tools
-Version  : 19.08.1
-Release  : 11
-URL      : https://download.kde.org/stable/applications/19.08.1/src/akonadi-calendar-tools-19.08.1.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.1/src/akonadi-calendar-tools-19.08.1.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.1/src/akonadi-calendar-tools-19.08.1.tar.xz.sig
+Version  : 19.08.2
+Release  : 12
+URL      : https://download.kde.org/stable/applications/19.08.2/src/akonadi-calendar-tools-19.08.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.2/src/akonadi-calendar-tools-19.08.2.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.2/src/akonadi-calendar-tools-19.08.2.tar.xz.sig
 Summary  : CLI tools to manage akonadi calendars
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.1
@@ -18,15 +18,12 @@ Requires: akonadi-calendar-tools-data = %{version}-%{release}
 Requires: akonadi-calendar-tools-license = %{version}-%{release}
 Requires: akonadi-calendar-tools-locales = %{version}-%{release}
 BuildRequires : akonadi-calendar-dev
-BuildRequires : akonadi-contacts-dev
 BuildRequires : akonadi-dev
-BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : calendarsupport-dev
 BuildRequires : kcalcore-dev
 BuildRequires : kcalutils-dev
-BuildRequires : kcontacts-dev
 BuildRequires : kidentitymanagement-dev
 BuildRequires : kmime-dev
 BuildRequires : kpimtextedit-dev
@@ -83,14 +80,14 @@ locales components for the akonadi-calendar-tools package.
 
 
 %prep
-%setup -q -n akonadi-calendar-tools-19.08.1
+%setup -q -n akonadi-calendar-tools-19.08.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567789479
+export SOURCE_DATE_EPOCH=1570726975
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -103,11 +100,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1567789479
+export SOURCE_DATE_EPOCH=1570726975
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools
 cp COPYING %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/COPYING
