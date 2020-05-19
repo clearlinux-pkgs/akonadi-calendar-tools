@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : akonadi-calendar-tools
-Version  : 20.04.0
-Release  : 21
-URL      : https://download.kde.org/stable/release-service/20.04.0/src/akonadi-calendar-tools-20.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.0/src/akonadi-calendar-tools-20.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.0/src/akonadi-calendar-tools-20.04.0.tar.xz.sig
+Version  : 20.04.1
+Release  : 22
+URL      : https://download.kde.org/stable/release-service/20.04.1/src/akonadi-calendar-tools-20.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.1/src/akonadi-calendar-tools-20.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.1/src/akonadi-calendar-tools-20.04.1.tar.xz.sig
 Summary  : CLI tools to manage akonadi calendars
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.1
@@ -24,9 +24,11 @@ BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : calendarsupport-dev
+BuildRequires : extra-cmake-modules-data
 BuildRequires : kcalendarcore-dev
 BuildRequires : kcalutils-dev
 BuildRequires : kcontacts-dev
+BuildRequires : kdoctools-dev
 BuildRequires : kidentitymanagement-dev
 BuildRequires : kmime-dev
 BuildRequires : kpimtextedit-dev
@@ -83,39 +85,38 @@ locales components for the akonadi-calendar-tools package.
 
 
 %prep
-%setup -q -n akonadi-calendar-tools-20.04.0
-cd %{_builddir}/akonadi-calendar-tools-20.04.0
+%setup -q -n akonadi-calendar-tools-20.04.1
+cd %{_builddir}/akonadi-calendar-tools-20.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1587735764
+export SOURCE_DATE_EPOCH=1589928187
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1587735764
+export SOURCE_DATE_EPOCH=1589928187
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools
-cp %{_builddir}/akonadi-calendar-tools-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/akonadi-calendar-tools-20.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/1bd373e4851a93027ba70064bd7dbdc6827147e1
-cp %{_builddir}/akonadi-calendar-tools-20.04.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-cp %{_builddir}/akonadi-calendar-tools-20.04.0/calendarjanitor/COPYING %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/fafaf6b2753f82aa8df1d206d6b76c2241c2dfa8
-cp %{_builddir}/akonadi-calendar-tools-20.04.0/konsolekalendar/COPYING %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/fafaf6b2753f82aa8df1d206d6b76c2241c2dfa8
+cp %{_builddir}/akonadi-calendar-tools-20.04.1/COPYING %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/akonadi-calendar-tools-20.04.1/COPYING.DOC %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/akonadi-calendar-tools-20.04.1/COPYING.LIB %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/akonadi-calendar-tools-20.04.1/calendarjanitor/COPYING %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/fafaf6b2753f82aa8df1d206d6b76c2241c2dfa8
+cp %{_builddir}/akonadi-calendar-tools-20.04.1/konsolekalendar/COPYING %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/fafaf6b2753f82aa8df1d206d6b76c2241c2dfa8
 pushd clr-build
 %make_install
 popd
