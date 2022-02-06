@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : akonadi-calendar-tools
-Version  : 21.12.1
-Release  : 37
-URL      : https://download.kde.org/stable/release-service/21.12.1/src/akonadi-calendar-tools-21.12.1.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.12.1/src/akonadi-calendar-tools-21.12.1.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.12.1/src/akonadi-calendar-tools-21.12.1.tar.xz.sig
+Version  : 21.12.2
+Release  : 38
+URL      : https://download.kde.org/stable/release-service/21.12.2/src/akonadi-calendar-tools-21.12.2.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.12.2/src/akonadi-calendar-tools-21.12.2.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.12.2/src/akonadi-calendar-tools-21.12.2.tar.xz.sig
 Summary  : CLI tools to manage akonadi calendars
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GFDL-1.2 GPL-2.0
@@ -86,15 +86,15 @@ locales components for the akonadi-calendar-tools package.
 
 
 %prep
-%setup -q -n akonadi-calendar-tools-21.12.1
-cd %{_builddir}/akonadi-calendar-tools-21.12.1
+%setup -q -n akonadi-calendar-tools-21.12.2
+cd %{_builddir}/akonadi-calendar-tools-21.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1642035337
+export SOURCE_DATE_EPOCH=1644183228
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -110,13 +110,13 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1642035337
+export SOURCE_DATE_EPOCH=1644183228
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools
-cp %{_builddir}/akonadi-calendar-tools-21.12.1/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/29fb05b49e12a380545499938c4879440bd8851e
-cp %{_builddir}/akonadi-calendar-tools-21.12.1/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/8287b608d3fa40ef401339fd907ca1260c964123
-cp %{_builddir}/akonadi-calendar-tools-21.12.1/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/7697008f58568e61e7598e796eafc2a997503fde
-cp %{_builddir}/akonadi-calendar-tools-21.12.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/akonadi-calendar-tools-21.12.2/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/29fb05b49e12a380545499938c4879440bd8851e
+cp %{_builddir}/akonadi-calendar-tools-21.12.2/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/8287b608d3fa40ef401339fd907ca1260c964123
+cp %{_builddir}/akonadi-calendar-tools-21.12.2/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/akonadi-calendar-tools-21.12.2/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 pushd clr-build
 %make_install
 popd
