@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : akonadi-calendar-tools
-Version  : 22.08.2
-Release  : 46
-URL      : https://download.kde.org/stable/release-service/22.08.2/src/akonadi-calendar-tools-22.08.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.08.2/src/akonadi-calendar-tools-22.08.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.08.2/src/akonadi-calendar-tools-22.08.2.tar.xz.sig
+Version  : 22.08.3
+Release  : 47
+URL      : https://download.kde.org/stable/release-service/22.08.3/src/akonadi-calendar-tools-22.08.3.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.08.3/src/akonadi-calendar-tools-22.08.3.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.08.3/src/akonadi-calendar-tools-22.08.3.tar.xz.sig
 Summary  : CLI tools to manage akonadi calendars
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GFDL-1.2 GPL-2.0
@@ -85,15 +85,15 @@ locales components for the akonadi-calendar-tools package.
 
 
 %prep
-%setup -q -n akonadi-calendar-tools-22.08.2
-cd %{_builddir}/akonadi-calendar-tools-22.08.2
+%setup -q -n akonadi-calendar-tools-22.08.3
+cd %{_builddir}/akonadi-calendar-tools-22.08.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1665779680
+export SOURCE_DATE_EPOCH=1667935914
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -109,7 +109,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1665779680
+export SOURCE_DATE_EPOCH=1667935914
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools
 cp %{_builddir}/akonadi-calendar-tools-%{version}/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/akonadi-calendar-tools/c085897bc39e05746ffd2d889a6e84ff1b7ae2d9 || :
